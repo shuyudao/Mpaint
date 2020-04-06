@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爷来涂鸦-多人实时在线创作涂鸦</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1735689_x6bmgpj6gj.css">
+    <style type="text/css">
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        #canvas {
+            position: relative;
+            top: 0;
+            left: 0;
+            background: #fff;
+            display: block;
+            overflow: scroll;
+        }
+
+        .actions {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .actions>svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin: 0.5rem 1rem;
+            transition: all 0.3s;
+        }
+
+        .actions svg.active {
+            fill: orangered;
+            transform: scale(1.4);
+        }
+        *{
+
+		    -webkit-user-select:none;
+		
+		     -moz-user-select:none;
+		
+		     -ms-user-select:none;
+		
+		     user-select:none;
+		
+		}
+
+        .color_active {
+            border: 2px solid #9E9E9E;
+            box-sizing: border-box;
+        }
+
+        .colors {
+            position: fixed;
+            top: 0rem;
+            left: 0.5rem;
+        }
+
+        .colors>li {
+            margin: 1rem 0;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0px 0px 3px black;
+
+        }
+
+        .black {
+            background: black
+        }
+
+        .red {
+            background: red
+        }
+
+        .orange {
+            background: orange
+        }
+
+        .green {
+            background: green
+        }
+
+        .blue {
+            background: blueviolet
+        }
+
+        #fxCt {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            pointer-events: none;
+        }
+
+        #fxCt div {
+            pointer-events: all;
+            position: absolute;
+            width: 80px;
+            height: 35px;
+            background-color: rgba(121, 119, 119, 0.15);
+            color: #000;
+            line-height: 30px;
+            text-align: center;
+            font-size: 26px;
+        }
+
+        #top {
+            top: 0px;
+            left: 50%;
+            margin-left: -40px;
+        }
+
+        #bottom {
+            bottom: 0px;
+            left: 50%;
+            margin-left: -40px;
+        }
+
+        #left,
+        #right {
+            width: 35px !important;
+            height: 80px !important;
+            line-height: 80px !important;
+        }
+
+        #left {
+            left: 0px;
+            top: 50%;
+            margin-top: -40px;
+        }
+
+        #right {
+            right: 0px;
+            top: 50%;
+            margin-top: -40px;
+        }
+
+        #online_num {
+            position: absolute;
+            bottom: 12px;
+            left: 10px;
+            font-size: 14px;
+            color: #717171;
+        }
+
+        #about {
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #about i {
+            font-size: 38px;
+            position: relative;
+            left: -2px;
+            top: 1px;
+            color: #ccc;
+        }
+
+        #about_page {
+            display: none;
+            width: 300px;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0px 0px 3px black;
+            background-color: #fff;
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            margin-left: -150px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #about_page p {
+            margin: 10px 0;
+        }
+
+        button {
+            width: 80px;
+            height: 32px;
+            border: none;
+            background-color: #ccc;
+        }
+
+        #download {
+            width: 120px;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="draw" style="width: 100%;height: 100%;overflow: scroll;">
+        <p id="load" style="text-align: center;line-height: 50px;">同步数据中，请等待...</p>
+        <canvas id="canvas" class="cursor1" width="3000" height="2000"></canvas>
+    </div>
+    <div id="actions" class="actions">
+    </div>
+    <p id="online_num"></p>
+    <div id="fxCt">
+        <div id="top">
+            <i class="iconfont icon-arrow-up"></i>
+        </div>
+        <div id="left">
+            <i class="iconfont icon-arrow-1"></i>
+        </div>
+        <div id="right">
+            <i class="iconfont icon-arrow-"></i>
+        </div>
+        <div id="bottom">
+            <i class="iconfont icon-arrow-down"></i>
+        </div>
+    </div>
+
+    <div id="about_page">
+        <h2>关于</h2>
+        <p>爷来涂鸦，是一个多人在线同步协作涂鸦的✌，可以多个用户，在同一块画布白板（3000*2000）上远程同时创作绘制，可以实时看到对方的绘制轨迹。</p>
+        <p>所有的创作内容均会被保存，因此没有擦除功能，但是你可以覆盖他人的涂鸦。</p>
+        <p>移动设备，可以<b>长按</b>四个<b> 方向键 </b>滚动</p>
+        <p>由于机器在美国，所以第一次打开会有亿点慢，耐心等待或退出重新打开</p>
+        <p>建议：不要绘制无意义的内容，建议在大屏设备上使用</p>
+        <p style="color: #717171;">By 术与道</p>
+        <p style="color: #c5c5c5;font-size: 12px;">测试用例，不做任何保证</p>
+        <button>关闭</button>
+        <button id="download">下载当前的涂鸦</button>
+    </div>
+
+    <ol class="colors">
+        <li id="about"><i class="iconfont icon-guanyu"></i></li>
+        <li id="black" class="black color_active"></li>
+        <li id="red" class="red"></li>
+        <li id="orange" class="orange"></li>
+        <li id="green" class="green"></li>
+        <li id="blue" class="blue"></li>
+    </ol>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/socket.io/2.0.3/socket.io.js"></script>
+    <script src="./static/canvas.js"></script>
+    <script src="./static/scoket.js"></script>
+    <script>
+    
+        function isMobile() {
+            let mobile = navigator.userAgent.match(
+                /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+            )
+            return mobile != null
+        }
+        //设置cookie
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+        //获取cookie
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+            }
+            return "";
+        }
+
+        function downLoad(url) {
+            var oA = document.createElement("a");
+            oA.download = '爷来涂鸦.png'; // 设置下载的文件名，默认是'下载'
+            oA.href = url;
+            document.body.appendChild(oA);
+            oA.click();
+            oA.remove(); // 下载之后把创建的元素删除
+        }
+
+        $("button").click(function () {
+            $("#about_page").hide();
+        })
+
+        $("#about").click(function () {
+            $("#about_page").show();
+        })
+
+        $("#download").click(function () {
+            var down = canvas.toDataURL("image/png");
+            downLoad(down);
+        })
+
+        //滚动距离 偏移量
+        scroll_x = 0;
+        scroll_y = 0;
+
+        if (isMobile()) {
+        	//防止类似于QQ内置浏览器的下拉刷新
+        	document.body.addEventListener('touchmove', (e) => {
+			  e.preventDefault();
+			}, { passive: false });
+
+            if(!getCookie("isnew")){
+                $("#about_page").show();
+                setCookie("isnew","1",50);
+            }
+
+            document.getElementById("draw").style.overflow = "hidden";
+            document.getElementById("fxCt").style.display = "block";
+            var sc_width = document.body.clientWidth;
+            var sc_height = document.body.clientHeight;
+
+            function touch(dom) {
+                var timer;
+                $("#" + dom).on('touchstart', function () {
+                    timer = setInterval(function () {
+
+                        if (dom == "top") {
+                            if ($("#canvas").position().top != 0) {
+                                $("#canvas").css("top", $("#canvas").position().top + 3);
+                                scroll_y -= 3;
+                            }
+                        } else if (dom == "left") {
+                            if ($("#canvas").position().left != 0) {
+                                $("#canvas").css("left", $("#canvas").position().left + 3);
+                                scroll_x -= 3;
+                            }
+                        } else if (dom == "bottom") {
+                            if ($("#canvas").position().top > (-canvas.height + sc_height)) {
+                                $("#canvas").css("top", $("#canvas").position().top - 3);
+                                scroll_y += 3;
+                            }
+                        } else {
+                            if ($("#canvas").position().left > (-canvas.width + sc_width)) {
+                                $("#canvas").css("left", $("#canvas").position().left - 3);
+                                scroll_x += 3;
+                            }
+                        }
+
+                    }, 1);
+                })
+
+                $("#" + dom).on('touchend', function () {
+                    clearInterval(timer);
+                })
+            }
+
+            touch("top");
+            touch("left");
+            touch("right");
+            touch("bottom");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+2020-04-05 00:27:04 pid:1 Worker process terminated with ERROR: E_ERROR "Uncaught ArgumentCountError: Too few arguments to function {closure}(), 1 passed and exactly 2 expected in C:\Users\sad\Desktop\mupaint\socket.php:10
+Stack trace:
+#0 [internal function]: {closure}(Object(PHPSocketIO\Socket))
+#1 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Object(Closure), Array)
+#2 [internal function]: PHPSocketIO\Event\Emitter->emit('connection', Object(PHPSocketIO\Socket))
+#3 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Nsp.php(102): call_user_func_array(Array, Array)
+#4 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Nsp.php(68): PHPSocketIO\Nsp->emit('connection', Object(PHPSocketIO\Socket))
+#5 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Client.php(64): PHPSocketIO\Nsp->add(Object(PHPSocketIO\Client), Object(PHPSocketIO\Nsp), Array)
+#6 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\SocketIO.php(130): PHPSocketIO\Client->connect('/')
+#7 [internal function]: PHPS in C:\Users\sad\Desktop\mupaint\socket.php on line 10"
+2020-04-05 14:23:47 pid:1 Error: Class 'PHPSocketIO\Parser\BinaryReconstructor' not found in C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Parser\Decoder.php:26
+Stack trace:
+#0 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Client.php(182): PHPSocketIO\Parser\Decoder->add('51-["save",{"_p...')
+#1 [internal function]: PHPSocketIO\Client->ondata('51-["save",{"_p...')
+#2 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Array, Array)
+#3 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Socket.php(187): PHPSocketIO\Event\Emitter->emit('data', '51-["save",{"_p...')
+#4 [internal function]: PHPSocketIO\Engine\Socket->onPacket(Array)
+#5 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Array, Array)
+#6 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transport.php(56): PHPSocketIO\Event\Emitter->emit('packet', Array)
+#7 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transport.php(61): PHPSocketIO\Engine\Transport->onPacket(Array)
+#8 [internal function]: PHPSocketIO\Engine\Transport->onData('451-["save",{"_...')
+#9 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transports\WebSocket.php(26): call_user_func(Array, '451-["save",{"_...')
+#10 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Connection\TcpConnection.php(656): PHPSocketIO\Engine\Transports\WebSocket->onData2(Object(Workerman\Connection\TcpConnection), '451-["save",{"_...')
+#11 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #81)
+#12 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#13 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(1404): Workerman\Worker->run()
+#14 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#15 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#16 C:\Users\sad\Desktop\mupaint\socket.php(64): Workerman\Worker::runAll()
+#17 {main}
+2020-04-05 14:23:47 pid:1 Worker process terminated
+2020-04-05 14:26:44 pid:1 Error: Class 'PHPSocketIO\Parser\BinaryReconstructor' not found in C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Parser\Decoder.php:26
+Stack trace:
+#0 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Client.php(182): PHPSocketIO\Parser\Decoder->add('51-["save",{"_p...')
+#1 [internal function]: PHPSocketIO\Client->ondata('51-["save",{"_p...')
+#2 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Array, Array)
+#3 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Socket.php(187): PHPSocketIO\Event\Emitter->emit('data', '51-["save",{"_p...')
+#4 [internal function]: PHPSocketIO\Engine\Socket->onPacket(Array)
+#5 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Array, Array)
+#6 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transport.php(56): PHPSocketIO\Event\Emitter->emit('packet', Array)
+#7 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transport.php(61): PHPSocketIO\Engine\Transport->onPacket(Array)
+#8 [internal function]: PHPSocketIO\Engine\Transport->onData('451-["save",{"_...')
+#9 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transports\WebSocket.php(26): call_user_func(Array, '451-["save",{"_...')
+#10 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Connection\TcpConnection.php(656): PHPSocketIO\Engine\Transports\WebSocket->onData2(Object(Workerman\Connection\TcpConnection), '451-["save",{"_...')
+#11 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #52)
+#12 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#13 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(1404): Workerman\Worker->run()
+#14 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#15 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#16 C:\Users\sad\Desktop\mupaint\socket.php(63): Workerman\Worker::runAll()
+#17 {main}
+2020-04-05 14:26:44 pid:1 Worker process terminated
+2020-04-05 14:32:30 pid:1 Error: Class 'PHPSocketIO\Parser\BinaryReconstructor' not found in C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Parser\Decoder.php:26
+Stack trace:
+#0 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Client.php(182): PHPSocketIO\Parser\Decoder->add('51-["save",{"_p...')
+#1 [internal function]: PHPSocketIO\Client->ondata('51-["save",{"_p...')
+#2 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Array, Array)
+#3 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Socket.php(187): PHPSocketIO\Event\Emitter->emit('data', '51-["save",{"_p...')
+#4 [internal function]: PHPSocketIO\Engine\Socket->onPacket(Array)
+#5 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Array, Array)
+#6 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transport.php(56): PHPSocketIO\Event\Emitter->emit('packet', Array)
+#7 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transport.php(61): PHPSocketIO\Engine\Transport->onPacket(Array)
+#8 [internal function]: PHPSocketIO\Engine\Transport->onData('451-["save",{"_...')
+#9 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transports\WebSocket.php(26): call_user_func(Array, '451-["save",{"_...')
+#10 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Connection\TcpConnection.php(656): PHPSocketIO\Engine\Transports\WebSocket->onData2(Object(Workerman\Connection\TcpConnection), '451-["save",{"_...')
+#11 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #50)
+#12 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#13 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(1404): Workerman\Worker->run()
+#14 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#15 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#16 C:\Users\sad\Desktop\mupaint\socket.php(57): Workerman\Worker::runAll()
+#17 {main}
+2020-04-05 14:32:30 pid:1 Worker process terminated
+2020-04-05 14:33:07 pid:1 Error: Class 'PHPSocketIO\Parser\BinaryReconstructor' not found in C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Parser\Decoder.php:26
+Stack trace:
+#0 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Client.php(182): PHPSocketIO\Parser\Decoder->add('51-["save",{"_p...')
+#1 [internal function]: PHPSocketIO\Client->ondata('51-["save",{"_p...')
+#2 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Array, Array)
+#3 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Socket.php(187): PHPSocketIO\Event\Emitter->emit('data', '51-["save",{"_p...')
+#4 [internal function]: PHPSocketIO\Engine\Socket->onPacket(Array)
+#5 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Event\Emitter.php(93): call_user_func_array(Array, Array)
+#6 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transport.php(56): PHPSocketIO\Event\Emitter->emit('packet', Array)
+#7 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transport.php(61): PHPSocketIO\Engine\Transport->onPacket(Array)
+#8 [internal function]: PHPSocketIO\Engine\Transport->onData('451-["save",{"_...')
+#9 C:\Users\sad\Desktop\mupaint\vendor\workerman\phpsocket.io\src\Engine\Transports\WebSocket.php(26): call_user_func(Array, '451-["save",{"_...')
+#10 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Connection\TcpConnection.php(656): PHPSocketIO\Engine\Transports\WebSocket->onData2(Object(Workerman\Connection\TcpConnection), '451-["save",{"_...')
+#11 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #50)
+#12 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#13 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(1404): Workerman\Worker->run()
+#14 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#15 C:\Users\sad\Desktop\mupaint\vendor\workerman\workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#16 C:\Users\sad\Desktop\mupaint\socket.php(58): Workerman\Worker::runAll()
+#17 {main}
+2020-04-05 14:33:07 pid:1 Worker process terminated
